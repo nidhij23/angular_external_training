@@ -1,26 +1,49 @@
-//variables and types
+//Operators
 
-//function declaration
-function testVariable() {
-    var id = 10; //number
-    var name = "Nidhi";
-    var location = 'Noida';
-    var skill = `Angular 2.0`; //es 6 style
-    var isWorking = true;
-    var salary;
-    var totalSalary = salary * 10;
-    var avgSalary=1000/0;
-    console.log('Name' + name); //es 5
-    console.log("Id", id); //es 6
-    console.log(`You are from ${location}`); //es 6
-    console.log(`You are working ${isWorking}`)
-    console.log("skills are",skill)
+function testPlus() {
+    var x = 10, y = 20;
+    var result = x + y;
+    console.log(`The result is${result}`); //addition
+    var price = '$' + 100;
+    console.log(`The result is ${price}`);//concantenation
 
-
-    console.log(`Salary: ${salary}`); //undefined
-    console.log(`Total Salary is ${totalSalary}`) //NaN
-    console.log(`Average salary ${avgSalary}`) //infinity
+    //conversion -- string to number
+    var cResult = +"10" * "2";
+    console.log(`The result is ${cResult}`)
+    var wrongResult = +"test" * +"2";
+    console.log("The wring result", wrongResult);
+    var wrongResult1 = parseInt("test") * 10;
+    console.log("The result is", wrongResult1);
+    var cResult1 = parseInt(10) * 10;
+    console.log("The result is", cResult1)
 }
 
-//function invocation
-testVariable();
+
+
+function testEqual() {
+    var x = 10;
+    var y = 20;
+    var result = x === y;
+    console.log(`the result is ${result}`);
+}
+
+function testAndOr() {
+    var x = true;
+    var y = false;
+    var rAnd = x && y;
+    console.log(rAnd);
+    var rOr=x ||y;
+    console.log('The Or result',rOr);
+
+    var r = "nidhi" && 10;
+    var name;
+    console.log(`the && result is `, r);//important one 
+    var orResult=name ||'nidhi';
+    console.log("the result",orResult);
+    if(name) console.log('hi')
+    else console.log("hello");
+
+}
+testPlus();
+testEqual();
+testAndOr();
