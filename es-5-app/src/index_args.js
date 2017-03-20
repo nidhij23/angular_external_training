@@ -23,7 +23,7 @@ sayHello("Nidhi");
  }
  multiLine("Again Nidhi");
 
- var hello2 = (name1,name2)=>{
+ var hello2 = (name1,name2)=>{ //In case of multiple paramters
      console.log("hi",name1);
      console.log("hi",name2);
 
