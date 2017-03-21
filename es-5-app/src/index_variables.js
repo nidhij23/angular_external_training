@@ -14,7 +14,7 @@ function testVariable() {
     console.log("Id", id); //es 6
     console.log(`You are from ${location}`); //es 6
     console.log(`You are working ${isWorking}`)
-    console.log("skills are",skill)
+    console.log("skills are",skill);
 
 
     console.log(`Salary: ${salary}`); //undefined

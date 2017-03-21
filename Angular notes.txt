@@ -1,0 +1,248 @@
+////////////////////////////////////
+
+Google Search the below
+Day1-->
+	ReactiveX
+
+Day2-->
+	Another good book for design patterns is HeadFirst Design patterns
+	LEarn ABout Javascript Modules--Google--https://addyosmani.com/resources/essentialjsdesignpatterns/book/-->
+	RequireJS,CommonJS,
+
+	how to prevent augmentation of object in javascript? 
+	how to delete properties and how to iterate properties in Javascript
+	Hoisting
+
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/////////////Some topics not clear/////////////////////////////
+
+Linking loading
+Lexical analysis in terms of Javascriptand the tree structure formed
+
+
+///////////////////////////////////////////////////////////////////////
+Angular 2
+means angular brackets <>
+
+Angular can augment HTML
+
+Javascript parts:
+1.Language fundamentals -type,variables,operators,contstr,loops
+2.Functions -expressions,callbacks,closures
+3.OO -objects
+4.UI programming/DOM
+5.Socket Programming -Ajax
+
+Client
+1.Language fundamentals -type,variables,operators,contstr,loops
+2.Functions -expressions,callbacks,closures
+3.OO -objects
+
+4.DOM
+5.AJAx
+
+
+Server
+1.Language fundamentals -type,variables,operators,contstr,loops
+2.Functions -expressions,callbacks,closures
+3.OO -objects
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+DOM is DOcument Object Model
+DOM is spec from w3c
+Spec says how to rpresent html program(source code)/passive into active program
+
+Spec recommends runtime representation must be a datastructure "tree"
+
+Javascript has 3 built-in objects:
+1.Plain Objects
+2.Objects
+3.Wrapper classes -String,Number,Boolean,Function
+Example-Math,Date,Regex,JSON
+
+
+DOM Objects -window,document,location,history,forms,links,any UI element(p,h1,span,div)
+
+window-->variable--function Window(){}
+document-->variable-- HTMLDocument
+
+window-->represents Browser
+document-anything inside body tag
+
+location-which browser location-->angular2 core object to implement navigation  and routing,/spa(single page applications)
+forms
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Javascript DOM API
+
+Event programming
+
+Type of DOM nodes:
+1.element node
+2.attribute node <a href="abc"> "href" is attribute
+3.Text node/content node <li>test</li> "li" is text node
+4.Comment node
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+DOM Wrappers/libs/frameworks
+ jQuery Angular React ember Polymer all sit on DOM 
+
+
+////////////////////////////////////////////////
+
+Angular is famous because:
+1.Angular is DOM framework based on MVC Design framework
+2.Angular is helping to build DOM in modular way
+3.Angular use IOC design pattern
+4.Angular offers declarative DOM programming
+5.Angualr is SPA framework
+6.Angular is good for CRUD applications
+
+Angular versions:
+Angular 1 --> written in es 5 standard
+Angular 2 --> written in es 6,typescript,Dart standard
+		Uses Typescript
+		Component-driven architecture
+
+
+Angular architecture
+1.Used to build web application
+	Types of web application
+	1.Action Based 
+	2.Resource based--Webservice
+	3.SPA based-Angular,React js,Ember,Polymer 
+
+	Application:collection of objects+static assets(css,htmls,images,audio,video,docs)
+
+	Collection of objects--->Entity,Bean,POJO
+	Component-->Collection of objects
+
+Angular application-->collectionof objects+static assets
+Component : is an object.
+This terminology termed by Microsoft in in 1990s.
+	1.Which must represent "UI element"-button,textbox,window,dialog
+	2.could be reused
+
+Module :is an Object
+Service: is an Object
+
+application={component,module,service}
+
+Parts of component :
+	--Simple object becomes a component on adding a decorator(called annotation in java)
+
+	Component=Object+UI(html element)
+
+	Template:collection of static +dynamic expression
+
+	Client side templating  system:
+	1.Mustachejs-{{}}
+	2.Handlebars.js
+	3.Jade
+	4.EJS
+	5.DustJS-linked in uses this
+	6.jQuery Templates (not popular)
+
+	Template Syntax:
+	<h1>Hello {{name}} </h1>
+
+	data+<h1>Hello {{name}}===view
+
+	component=data+Template
+	@Component
+	class HeroComponent{
+		title:string='Tour Of Heroes';
+
+	}
+
+-->@Component is a function inside a class and is to be imported by --> import{Component} from '@angular/core
+
+
+{}-->Component configuration object
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Angular 2 programming
+
+1.use angular seed to scaffol the project 
+ //another site called as yeoman can be used for scaffolding the seeds of all projects
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Typescript :
+	--superset of Javascript
+	--typescript scales Javascript
+-Modularity
+-Object Oriented
+-IOC
+-static type system
+
+installing it using node.js-->npm install -g typescript
+						   -->named as hello.ts
+
+run in browsers by--->hello.ts--hello.js--run in browser
+
+Core Feature of typescript -->type+script
+
+Variable declaration in Typescript
+In ES 6 ,dont use var keyword
+let,const
+
+
+
+
+
+Java Packages
+Js does not have Modules
+
+Module design patterns/Module Loaders
+Module design specs:
+1.AMD -->Asynchronous module definition
+2.CommonJS --> Requires JS used to load the modules and it is used for dependency management...COmmonJS has been deprecated
+3.ES 6 Modules
+4.UMD-Angular 2
+
+
+app.js
+For using other js files use requires-->var myfile=require('one');
+For exporting the modules use export
+
+ES 6 modules=Best Pratices from AMD +Best Practices CommonJS
+
+one.js-->export class sayHello{}
+app.js -->import {sayHello} from 'one';
+
+All the files are linked by "Class Loader" in java
+In javascript this work is done by 'Module loader'
+
+Module loaders:
+Webpack
+SystemJS
+
+
+/////////////////////////////////
+While lexical analysis-the lexical anyalser copies the code once again and places the code in block one line above which is called as --> Hoisting
+java supoorts block level scope so this problem doen not occur but in js it occurs
+
+in ES 5: this can be prevented by
+IFFE functions -->an immediately invoked function expression(or IIFE,prononce as "iffy" ) is a javascript programming lanaguage idiom which producess a lexical scope using Javasript's function scoping
+
+use let inplace of var inside functions
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

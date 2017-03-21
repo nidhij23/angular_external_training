@@ -29,6 +29,6 @@ console.log(`Location : ${customer.location}`);
 console.log(`Invoice : ${customer.calculateInvoice()}`);
 console.log(`Salary is ${customer.calculateSalary()}`);
 console.log(`Order ID : ${customer.order.orderId}`);
-console.log(`Product is :${customer.order.product.name}`);
+console.log(`Product is :${customer.order.product.name}`);//has-a relationship
 
 
