@@ -1,6 +1,8 @@
-////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Google Search the below
+paste.ubuntu.com--> is a good website for sharig code on the go
+
+Google Search the below(Self Study)
 Day1-->
 	ReactiveX
 
@@ -9,9 +11,17 @@ Day2-->
 	LEarn ABout Javascript Modules--Google--https://addyosmani.com/resources/essentialjsdesignpatterns/book/-->
 	RequireJS,CommonJS,
 
-	how to prevent augmentation of object in javascript? 
+	how to prevent augmentation of object in javascript?Object sealing 
 	how to delete properties and how to iterate properties in Javascript
 	Hoisting
+
+Day3-->
+	npmjs.com(learning how to crate a node module)
+	versioning syntax in case of dependencies(usage of ^,~,- )
+	meaning of '@' barrel in node system
+	sourceMapJS
+	SystemJS
+	Webworker--library for implementing multi threading in JS(used in progressive web apps)
 
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -19,7 +29,7 @@ Day2-->
 /////////////Some topics not clear/////////////////////////////
 
 Linking loading
-Lexical analysis in terms of Javascriptand the tree structure formed
+Lexical analysis in terms of Javascript and the tree structure formed
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -94,7 +104,67 @@ Type of DOM nodes:
 DOM Wrappers/libs/frameworks
  jQuery Angular React ember Polymer all sit on DOM 
 
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Typescript :
+	--superset of Javascript
+	--typescript scales Javascript
+-Modularity
+-Object Oriented
+-IOC
+-static type system
 
+installing it using node.js-->npm install -g typescript
+						   -->named as hello.ts
+
+run in browsers by--->hello.ts--hello.js--run in browser
+
+Core Feature of typescript -->type+script
+
+Variable declaration in Typescript
+In ES 6 ,dont use var keyword
+let,const
+
+
+
+
+
+Java Packages
+Js does not have Modules
+
+Module design patterns/Module Loaders
+Module design specs:
+1.AMD -->Asynchronous module definition
+2.CommonJS --> Requires JS used to load the modules and it is used for dependency management...COmmonJS has been deprecated
+3.ES 6 Modules
+4.UMD-Angular 2
+
+
+app.js
+For using other js files use requires-->var myfile=require('one');
+For exporting the modules use export
+
+ES 6 modules=Best Pratices from AMD +Best Practices CommonJS
+
+one.js-->export class sayHello{}
+app.js -->import {sayHello} from 'one';
+
+All the files are linked by "Class Loader" in java
+In javascript this work is done by 'Module loader'
+
+Module loaders:
+Webpack
+SystemJS
+
+
+/////////////////////////////////
+While lexical analysis-the lexical anyalser copies the code once again and places the code in block one line above which is called as --> Hoisting
+java supoorts block level scope so this problem doen not occur but in js it occurs
+
+in ES 5: this can be prevented by
+IFFE functions -->an immediately invoked function expression(or IIFE,prononce as "iffy" ) is a javascript programming lanaguage idiom which producess a lexical scope using Javasript's function scoping
+
+use let inplace of var inside functions
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////
 
 Angular is famous because:
@@ -170,79 +240,235 @@ Parts of component :
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Angular 2 programming
 
-1.use angular seed to scaffol the project 
+1.use angular seed to scaffold the project 
  //another site called as yeoman can be used for scaffolding the seeds of all projects
 
 
+to start a module in node--
+>npm init-->to start a mdoule in nodejs which will create package.JSON which is mandatory to start
+>package.JSON--> is the configuration file in node modules similar to pom.xml
+			JSON structure:
+			JSON is a string file/text file
+			JSON is created from Javascript object literal pattern
+			JSon was created to transfer data between  2 different applications
 
+			->JSON is popular because it is very lightweight as it does not contain any grammar
+			-->Json must have only literal-->string,number,boolean,object,array
+			-->JSON keys are string and it has to mentioned specifically in double quotes to ensure its compatibility with all programming languages
+			example:
+			{
+				"name":"Nidhi",
+				"working":true
+			}			
+			JSon can be string literals as well as objects(nested JSON)
 
+	Structure of package.json--
+		"name": "angular-quickstart", -->name of project into whihc the project is build
+		 "version": "1.0.0", -->version of your own project
 
+		 to install lite server 
+		 		npm install lite-server	-g
+				 Running server
+				 	1.direct 
+					 	>lite-server
+					2.thorugh node
+						>npm init>
+						>package.json
+							"scripts":{
+								"start":"lite-server"
+							}
+		Scripts-->automating
+		 "start": "concurrently \"npm run build:watch\" \"npm run serve\"",
+		 	here concurrently is a library-->concurrently.js
+			 this will help in running 2 commands together
+			 	the 2 commands here are npm run build:watch\ && npm run serve\
+				 	these 2 commands run 2 scripts
+					 "build:watch": "tsc -p src/ -w",&&  -->this command is watching file changes in the given location
+					 "serve": "lite-server -c=bs-config.json", -->this command is starting lite-server with its configuration (-c=bs-config.json)
 
+		"keywords": [],-->this is for Search Engine optimisation
+		"dependencies":{} -->these are the modules to be downloaded in the form of dependencies
+				!!-- @ is know as barrel in node and it has a special meaning --!!
+		"devDependencies": {} -->these are dependencies needed only during development
+			while installing the packages mention --save to also update the package.json with the new dependency
 
+		For testing the application-->npm test'
+		
+		tsconfig.json file -->an important file -->soul of typescript compilation--configuration for tsc compiler
+			parts of tsconfig.json:
+				CommonJS,target is es5(being downgraded),sourceMap (is a JS library for debugging purpose)
+				lib is es2015
+		
+		Loader-->SystemJS is for loading 
+		Flow of Angular-app/Booting of angular app
+			--index.html
+				polyfill-terminology mentioning new features for older browsers.example-
+							css3 - animation would not run in IE 3 or IE 4,there comes the role of pollyfill libraries
+							similarly in case of  ->angular features would be available to older browsers using the below libraries:
+									<script src="node_modules/core-js/client/shim.min.js"></script>--Polyfill
 
+				<script src="node_modules/zone.js/dist/zone.js"></script> -->for providing angular runtime
+    			<script src="node_modules/systemjs/dist/system.src.js"></script> -->for implementing loaders
+				<script src="systemjs.config.js"></script>-->configuration for system loaders
+				<script>
+						this is for kickstarting boot process
+      					System.import('main.js').catch(function(err){ console.error(err); });
+    			
+				</script>
 
+				Flow starts from --> index.html:
+				-->first polyfill occurs
+				-->then zone.js provides runtime environment
+				-->then loader loads the files 
+				-->then main.js kickstarts the process 
+				-->in main.js there is a bootstrap module which starts appModule(which is Root Module)
+				-->this Root Module boostraps the AppComponent which is the RootComponent which after words can contain other components
 
+		Modules:
+			Module is object which contains other objects(components,pipes,modules,services,directives,...)
+			Equal to packages in java
 
+			@NgModule({})			{} here this is module configuration object
+			class AppModule{}  --Normal classes become module by decorating it with @NgModule
 
+			@Component({})			{} here this is object(component confguration object)
+			class AppComponent{} --Normal classes become component by decorating it with @Component
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Typescript :
-	--superset of Javascript
-	--typescript scales Javascript
--Modularity
--Object Oriented
--IOC
--static type system
+			export class AppComponent{}
+			let component=new AppComponent();
+			-->Angular in DI(Dependency Injection)/IOC(Inversion of Control) framework.
 
-installing it using node.js-->npm install -g typescript
-						   -->named as hello.ts
+			Inversion of Control..
+				class Address{}
+				class Employee{
+						Address address;
+						//setter and getter
+						//constructor
+				}
+				Address addr=new Address();
+				Employee emp=new Employee(addr);//constructor Injection
+			
+			app.module.ts
+				@NgModule({
+  					imports:      [ BrowserModule ], //here AppModule is root Module and BrowserModule is the subModule
+ 					declarations: [ AppComponent ],
+ 					bootstrap:    [ AppComponent ]
+				})
+				>imports:  --> specify module dependencies
+					Angular DI does not follow getter/setter functions as in Java,it rather uses constructor functions
+				>declarations:Components are added in declarations
+				>bootstrap:root component of this module
+				>providers:for importing services(this is an optional one used when services are used)
 
-run in browsers by--->hello.ts--hello.js--run in browser
+			app.component.ts 
+				import { Component } from '@angular/core';
+																//this whole is passive code
+				@Component({
+  					selector: 'my-app',
+  					template: `<h1>Hello {{name}}</h1>`,   //MVC-->Model ->name,View-template,Controller-component class
+				})
+				export class AppComponent  { name = 'Angular'; }
+				
+				The active code is <my-app></my-app>
 
-Core Feature of typescript -->type+script
+				Angular started with the philosophy of HTML5 custom tags-->
+					 HTML5 spec says existing html tags can be modified and new attributes can be added to these
+				ADT(Abstract data theory)-making custom from primitive
+					class Employee{int,float,char,boolean}
+					Employee = {int,float,char,boolean}
+					<my-app></my-app> = {h1}
 
-Variable declaration in Typescript
-In ES 6 ,dont use var keyword
-let,const
+				//MVC-->Model ->name,View-template,Controller-component class
+				
+			Templates:
+				Binding
+				  ->moving data from controller to view
+				  ->moving data from view to controller
+				  Types of Binding:
+				  	1.Interpolation		{{}}
+					2.Property Binding []
+					3.Event Binding ()
+					4.Attribute Binding []
+					5.Class Binding []
+					6.Style Binding []
+					7.Two-way data binding with ngModel [()] (banana in a box)
+					
+					Interpolation-->moving data from controller to template
+					
+					Property Binding-->passing data to the component via props or attributes(dynamically)
+					<my-app>
+						<greet [message]="welcome"></greet>		// message - property name
+						<greet [message]="hello"></greet>
+					</my-app>
 
+					Event Binding-->
+						in HTML every element is object(DOM object)
+						Object =data+methods
+						DOM Object=variables+methods
+								methods=normal methods/events
 
+						//pattern1 :inline event attachment		
+						<button onclick="listener"></button> 
+						//pattern2 :
+						<button id="save"></button>
+						document.getElementbyId("save").addEventListener('click',cb);
+							How does JS differentiate between nprmal method and event?
+								->Event method starts with "on" example-->"onClick",onKeyPress,onMouseMove
+						In Angular:
+						<button (click)="listener()"></button>  //
 
+					Two-way data binding-->[()] property binding+event binding
+						<input text="text" onKeyPress="test()">
+						test(){
+							console.log(txt.value);
+						}
+						Angular offers ngModel -object which can catch data
+							[(ngModel)]-need not write any event
+							<input type="text" [(ngModel)]="name">
+							!!!!--let ngModel={name:"Nidhi"}--!!!!
 
+					View: dynamic html
+						Create:
+							Elements-->h1,h2,p,
+							Layout elements --> div,ul,li,span,list,table
+							Layout types --> Grid Layout(using table),Card Layout(using div),ListView(using ul)
 
-Java Packages
-Js does not have Modules
+			Directives: Angular has directives for DOM manipulation:
+				3 types:
+					1.Component directive --> A directive associated with template (selector-key is name of directive)tag for component
+					2.Structural directive -->change the DOM layout by adding or removing DOM elements--> *ngFor,*ngIf,*ngSwitch * used to differentiate
+					3.Attribute	directive -->Change the appearance or behaviour of elements 
+						<li tooltip="test></li>
+						@Directive({selector:'tooltip})
+						class ToolTip{}
+					
+					Styling your list view
+					1.through style element in index.html
+					2.component has property 
+						styles:[]-inline
+						stylesUrl:[] external
 
-Module design patterns/Module Loaders
-Module design specs:
-1.AMD -->Asynchronous module definition
-2.CommonJS --> Requires JS used to load the modules and it is used for dependency management...COmmonJS has been deprecated
-3.ES 6 Modules
-4.UMD-Angular 2
+				//to access a variable from controllrt to template it must be instance variable/declared at class level
 
+					Implementing 2-way data binding
+						1.you have to import forms module in appModule
+						2.use ngModel
+					
+					<input (keyup)="selectName(ngModel)="name">
+					<input (keyup)="selectAddress(ngModel)="test">
+					getData(data){}
+						let ngModel="{
+							name:'test',
+							age:30
+						}
+					  Observable design pattern --> 
+					  keyUp(value) newValue-->keyUp(value){selectedTrainer.name=value}-->Broadcast the changes in "name"
+					  	-->Event Emission-->
 
-app.js
-For using other js files use requires-->var myfile=require('one');
-For exporting the modules use export
+			//changes styles dynamically
+			Class Binding--> 2 classes selected unselected
+			<h1 class="selected">test</h1> 
+				[class.selected]="trainer===selectedTrainer" //true
+					|	 |						|
+				 class  name of css class 	   when
 
-ES 6 modules=Best Pratices from AMD +Best Practices CommonJS
-
-one.js-->export class sayHello{}
-app.js -->import {sayHello} from 'one';
-
-All the files are linked by "Class Loader" in java
-In javascript this work is done by 'Module loader'
-
-Module loaders:
-Webpack
-SystemJS
-
-
-/////////////////////////////////
-While lexical analysis-the lexical anyalser copies the code once again and places the code in block one line above which is called as --> Hoisting
-java supoorts block level scope so this problem doen not occur but in js it occurs
-
-in ES 5: this can be prevented by
-IFFE functions -->an immediately invoked function expression(or IIFE,prononce as "iffy" ) is a javascript programming lanaguage idiom which producess a lexical scope using Javasript's function scoping
-
-use let inplace of var inside functions
-///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
