@@ -472,3 +472,123 @@ to start a module in node--
 					|	 |						|
 				 class  name of css class 	   when
 
+			Property BInding-->Property binding will help to transferdata from parent to child coomponent 
+				Single direction flow-Passing data down to child components (This concept from ReactJS)
+
+				template:
+				<my-app>
+					<trainer [trainerInfo]="trainers" [title]="'MyTrainerApplication'">
+						<trainer-details>
+							<trainer-clients></trainer-clients>
+						</trainer-details>
+					<trainer>
+					<student [studentInfo]="students">
+						<student-details>
+						</student-details>
+					</student>
+				</my-app>
+
+				@Component({selector:'trainer'})
+				export class TrainerComponent{
+					trainers=TRAINERS;
+				}
+
+				@Component({selector:'trainer-details'
+				template:`div><span>{{trainer.name}}</div></span>
+				})
+				export class TrainerDetailsComponent{
+					@Input('trainerInfo')my_trainers;
+				}
+				//this is called as data attribute
+				
+				--Service Layer
+					template-view--->controller component-->service Layer-->Server(though ajax)
+					->simple typescript class
+					export class TrainerService{
+
+					}
+				2 types of services:
+					shared services: Service is injected/create at module level
+					local component/component level service: Service is created at component level
+
+					Asynchronous Programming:
+						Fundamental concept behind http-->Client can read/write--->Server can read /write
+							http -->is a protocol-->http.c progam-->works as Input/output
+							client server communicate based on http
+						We have es6 Promise Class to manage asyn programming flow
+							let promise=new Promise(); //design pattern
+						Promise API
+							resolve is a function--success
+							let resolve =(response)=>{}
+							let reject=(err)=>{}  //err and reject can be any variable name
+							let promise=new Promise(resolve,reject);
+
+							function Promise(resolve,reject){  //this is how promise is implemented internally
+								if(statuscode==200)	resolve();
+								if(statuscode=500) reject();
+							}
+							promise.then(function(data){},function(err){})
+						HTTP
+							Ajax->Asynchronous Javascript.Synonyms of Ajax:
+								XHR->XML Http request
+								HTTP Client
+
+							AJAX Object/XHR Object = Socket
+							Angular HTTP Wrapper is built on XML HTTP Request
+
+								Angular 2 offers http wrapper as Separate module
+								->that module contains HttpService-Object which handles client server communication
+
+								HttpService has methods:
+								1.get	------read
+								2.post  ------sending for insert
+								3.put   ------sending for update
+								4.delete -----sending data for delete
+
+								httpService.get();
+								httpService.post();
+								httpService.put();
+								httpService.delete();
+
+								return type of all http service methods is Observable(Reactive Programming)
+								REactive programming is a programming methodolgy to make your application 100% event driven
+								Implementation:
+									1.Server Layer - Web Service layer
+										In angular we can create fake/mock web service
+									2.Inject/Create web service inside Root Module-Not required if you access external web service 
+									3.DI Injection - InMemoryWebApiModule.forRoot(InMemoryDataService)//this is another way of injecting service
+									4.Service Layer - Access HTTP Object in service layer
+										(i) Import HTTP service 
+										(ii) 
+
+										//the standard format of response received
+										response={
+											headers:[
+												content-type:'application/json,
+												server:'apache'
+											]
+											data:[
+												{
+													id:1,
+													name:'Nidhi'
+												}
+											]
+										}
+
+										return this.http.get(this.url)
+        									.toPromise()
+        									.then(response => response.json().data as Trainer[])
+        									.catch(err => err);
+
+											the and catch are 2 important API's of promise..the result of this http .get is an Observable
+											we convert that response into Promise and once the promise is resolvde then the data property is picked from the response
+											and then the put into the Trainers[] array which is returned by the promise and in case any error occurs then the catch 
+											part would be executed
+
+
+
+
+							
+
+
+
