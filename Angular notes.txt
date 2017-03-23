@@ -585,6 +585,47 @@ to start a module in node--
 											and then the put into the Trainers[] array which is returned by the promise and in case any error occurs then the catch 
 											part would be executed
 
+						Event
+						1.event object
+							 <input type="button" id="mybtn" value="click">
+							  document.getElementbyId('id1').addEventListener('click',
+								  function(event){});
+									  event is a variable which can be anything
+									  event variable points to "Event" Object
+									  -->Event object has a lot of property,using the property we can control key build
+									  	<button (click)="doStuff($event)">Click</button>
+										  doStuff(evt){
+											  console.log(evt);
+										  }
+										Hierarchy of Mouse Event Object :
+										Object->Event->UI Event->Mouse Event(can be seen in proto_ while printing event )
+
+											 this.values = (<HTMLInputElement>event.target).value
+											 	in this target is property of event object
+												 		value is also property of event object
+
+										Template Reference variable:
+							Key event filtering(with key.enter)
+								The (keyup) event handler hears every keystroke
+								
+								 examine $event.keyCode 
+								 in Angular 2 keyup.enter is used specifically for enter
+							HOT Keys: keyup.which
+						
+						Angular Component LifeCycle
+							component life hooks(methods)
+							lifecycle implemented through interfaces
+							5 phases of component lifecycle:
+								1.constructor - For object initialisation
+								2.ngOnChanges - For Property initialisation (called whenever a compoenet receives new property)
+								3.ngInit - For Component Initialisation  (called only once for compoenent initialisation)
+									used for initial data setup/data services injection should be done in ngInit
+								4.ngDoCheck - Change Detection Life Cycle (Whenever component is changed,this life cycle is called)
+
+
+
+
+
 
 
 
