@@ -1,51 +1,66 @@
+import {
+    Component,
+    Input,
+    OnChanges,
+    OnInit,
+    DoCheck,
+    AfterViewInit,
+    AfterViewChecked,
+    ViewChild
 
-import { Component } from '@angular/core';
+} from '@angular/core';
+
+@Component({
+    selector: 'my-child-view',
+    template: `<label>ChildView</label><input [(ngModel)]="hero">`
+})
+export class ChildViewComponent {
+    hero = 'Magneta';
+}
 
 
 @Component({
-  selector: 'my-app',
-  template: `<button (click)="clicked($event)">Click ME</button><br>
-                <input (keyup)="onKey($event)">
-                <p>{{values}}</p><br>
-               <!-- <input #val (keyup)="test"> //test can be any name-->
-               <input #val (keyup)="test(val.value)">     
-           
-                <p>{{val.value}}</p>
-                <input #box 
-                (keyup.enter)="onEnter(box.value)" (blur)="onEnter(box.value)">
-                <p>{{value}}</p>
-                Which Key: {{which}}`,
-    host:{'(window:keydown)':'hotkeys($event)'}
-
+    selector: 'life-child',
+    template: `<div>{{name}}</div>
+               <my-child-view></my-child-view>
+                `
 })
-export class AppComponent {
-  clicked($event: Event) {
-    console.log($event);
-  }
-  values: string = '';
-  // onKey(event: any) {
-  //   this.values = event.target.value;
-  //   // console.log(event);
-  // }
-  onKey(event: KeyboardEvent) {
-    //this.values = event.target.value;    //this is javscript  style
-    this.values = (<HTMLInputElement>event.target).value; //this is typescript style -->defining type of UI type
-  }
-  myval:string=''; 
-  test(value:string){
-    this.myval=value;
-  }
+export class LifeCycleComponent implements OnChanges, OnInit, DoCheck, AfterViewInit,AfterViewChecked {
+    @Input() name: string;
+    constructor() {
+        console.log('Constructor is called');
+    }
+    ngOnChanges() {
+        console.log('Changes started!');
+    }
+    ngOnInit() {
+        console.log('Component init is called');
+    }
+    ngDoCheck() {
+        //you can watch inside component what component has been
+        //changed
+        console.log('Component is changed');
+    }
+    ngAfterViewInit() {
+        console.log('Child View intialization started!');
+    }
+    @ViewChild(ChildViewComponent) viewChild: ChildViewComponent;
 
-  value = 'Old Value';
-    onEnter(value: string) {
-        console.log('Event is called!');
-        this.value = value;
+    ngAfterViewChecked() {
+          console.log('Child view is checked!'+this.viewChild.hero);
     }
-    which:string="";
-    hotkeys(event:any){
-      this.which=event.which; //which is pre-defined key word
-      console.log(event.which);
-    }
+
 
 }
 
+
+@Component({
+    selector: 'my-app',
+    template: `<div>
+              <label>Parent:</label><input [(ngModel)]="myname">
+             <life-child [name]="myname"></life-child>
+            </div>`,
+})
+export class AppComponent {
+
+}

@@ -23,6 +23,8 @@ Day3-->
 	SystemJS
 	Webworker--library for implementing multi threading in JS(used in progressive web apps)
 
+Day4-->
+	Simple Change API
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -618,9 +620,26 @@ to start a module in node--
 							5 phases of component lifecycle:
 								1.constructor - For object initialisation
 								2.ngOnChanges - For Property initialisation (called whenever a compoenet receives new property)
-								3.ngInit - For Component Initialisation  (called only once for compoenent initialisation)
+								3.ngOnInit - For Component Initialisation  (called only once for compoenent initialisation)
 									used for initial data setup/data services injection should be done in ngInit
 								4.ngDoCheck - Change Detection Life Cycle (Whenever component is changed,this life cycle is called)
+								5.ngAfterViewInit
+								6.ngAfterViewChecked
+					How lifecycle Hooks work:
+						1.constructor is called
+							constructor-service layer-di injection only
+						2.property listener
+						 	<trainer-details [name]="value">
+							 ///////////////Interface called as simple change fo capturing new and old value//////////////
+						3.init 
+							Listener is called when component is initialised
+							It is used for initial data set
+						4.contentchanged-capture all changes being done in the component
+						5.Child	
+							ViewInit -Child	
+							@ViewChild for making the parent watch the changes of child-Decorator will help 
+								to access Child component data from Parent
+								->@ViewChild(ChildViewComponent) viewChild: ChildViewComponent;
 
 
 
