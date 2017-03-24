@@ -26,6 +26,16 @@ Day3-->
 Day4-->
 	Simple Change API
 
+Day5-->
+	EventEmitter
+	Custom Pipes
+	Chai.Js
+	Mocha.js
+	QueryParams
+	CSS 3 Animations
+	AuthGuard
+	Arrays API-->some functions-->map,find,filter,...
+
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /////////////Some topics not clear/////////////////////////////
@@ -641,14 +651,287 @@ to start a module in node--
 								to access Child component data from Parent
 								->@ViewChild(ChildViewComponent) viewChild: ChildViewComponent;
 
+							Event Emitter-->$event emitter must be passed
+
+							@Output() onIncrement=new EventEmitter<number>;
+
+							Pipes-->used for tansforming data.For ex-
+							parameterising a pipe:
+							a pipe can accept any number of optional paramteres to fine-tune the output.
+							Built-in Pipes:
+								DatePipe,UpperCasePipe,LowerCasePipe,CurrencyPipe and percentPipe
+							Parameterising a pipe:
+
+							import{Pipe,PipeTransform} from '@angular/core';
+								Pipe and PipeTransform must be imported and these are to be injected in the declarations section
+							@Pipe({
+								name:'exponentialStrength'
+								})
+
+								export class ExponentialStrength implements PipeTransform{
+									transform(value:number,exponent:string):number{
+										let exp=parseFloat(exponent);
+										return Math.pow(value,isNaN(exp)?1:exp);
+									}
+								}
+
+								value|exponentialStrength:paramter
+								10|exponentialStrength:2
+
+								Web Accessibility:
+									ARIA-defined ways to make Web content 
+										-->https://www.w3.org/TR/wai-aria/
+									    <input type="text" value="3" size="2" id="numTimes" aria-label="Number of times to flash screen">
+										
+										[attr.aria-label] is to used instead of pure aria labels//attr is a DOM property
+										
+										HTML 5 audio:
+
+			//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			Testing:
+				Unit testing
+				Functional Testing-->Selenium
+				Load Testing-->Soap UI,Jmeter
+				UI Testing-
+
+				Protractor,Nodemon,TCP Monitor -->Tools for testing
+				JAsmine-programming interface for testing pure JS applications/Jasmine core library has been taken from Chai
+				natural way of testing-->BDT(Behaviour driven Testing)
+				Chai.js	
+					expect.js
+					should.js
+					Assertion library-->verifies whether req==output
+
+					Chai-->assertion library
+					Jasmine JS-->
+
+					//test environment
+
+					suites:a Test suite begins with a call to the global Jasmine function describe with 2 parameters:a string and a function
+						suite is collection test
+						describe(namofthesuite,cb)
+						describe(nameofthesuite,cb)
+					spec:defined by calling the global Jasmin function it,whihc like describe takes a string and a function .
+					THe string is the title of the spec  and the function is the spec
+
+					describe('herocomponentsuite',function(){
+						describe('login sub suite',function(){
+							it('user must have 7 characters',function(){
+								assertionLogic
+							})
+							it('usr pass',function(){
+
+							})
+						})
+						describe('logout sub suite,function(){
+							it('user must be logedout',function(){
+
+							})
+						})
+					})
+					//these functions are from Mocha
+					suite can have sub-suites
+				Hooks-life cycle API's
+					Life cycle API's are called before and after "it"-->before,After,
+					before(function(){
+						//run before all tests in the block
+					})
+					after(function(){
+						//run after all tests in the block
+					})
+					beforeEach(function(){
+						//run before each tests in the block
+					})
+					afterEach(function(){
+						//run after each tests in the block
+					})
+				Assertion Section-->
+					Assertion library/Expectations
+					Expectations:
+						A spec contains one or more expectations that test the state of the code.
+						An expectation in JAsmine is an assertion that is eithr true or false
+						Expectatiotn are built with the function except which take a avlue,clled teh actual.
+						It is chained with with a maTcher function
+
+						describe("A Suite",function(){
+							if("contains spec withan expecting",function(){
+								expect(true).toBe(true);
+							})
+						})
+
+					Testing a component:
+					1.Isolated Test:Isolated unit test examine an instance of a class all by itself without any dependence on Angular
+						or any injected value
+					2.Angular Test Utility Classes:Testing component where Component has dependency
+
+					In Angular 2 ,TestBed object has been given to check 
+					TestBed class and several helper functions from @angular/core/testing library
+					1.TestBed:
+						Creates Testing Module Object
+						Creates Testing Component Object
+
+					2.TestFixture
+						Preparation of input data and stup/creation of fake or mock objects.Lodaing a database with a specific,
+						known set of data
+						
+						ComponentFixture: a handle on th etest environment surrounding the created compoent.the Refernce of the component
+							is Test Env.The fixture provides access to teh compoent itself and to theDebugElement.
+							ComponentFixture will have reference of ORiginal COmpoent Reference
+
+						DebugELement: which is a handle on the component's DOM Element.
+
+						MethodQuery:The query method takes a predicate function and searches the fixture's entire DOM tree for thefirst element 
+							that satisfies the predicate
+
+						  TestBed.configureTestingModule //here we are creating a module
+
+						  Change Detection Algorithms:
+						  	fixture.detectChanges() //on component you are calling detectChanges
+						  	Webworker-javascript implementation of Multi Threading
+							  detectChanges function called the DoCheck method
+
+					Testing Service:
+						original service should not be used
+						It needs to be mocked
+						Mocking:
+							TestBed.configureTestinModule({
+								declarations:[WelcomeComponent],
+								//providers: [Userservice]//not to use here
+								providers: [{provide:Uservice,useValue:userServiceStub}]
+							});
+						Access Stub:
+								userService=TestBed.get(UserService);
+
+					Protractor is an end-to-end functional testing tool for angular JS applications.It'll do things like push buttons ,
+						enter input and otherwise drive your application and then test the output that is produced from that input.
+
+						Protractor is wrapper for selenium WEbDriver.Protractor adds some specific Angular js functionalities to Selenium WebDriver
+						
+						//Groovy is good for testing(functional testing)
+
+		    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			Routing and Navigation:
+				SPA->Single page applications
+
+				The Angular Router enables navigatin from one view to the next as users perform application tasks.
+					The Basics:
+					<base href>
+					Router imports
+					Configuration
+					Router Outlet
+					ROuter links
+					Router State
+
+				Types->Simple Routing,
+					   Modular Routing,
+					   Multi-view design with child routes
+					   Routing works on Hyperlinks only
+				Basic Concepts:
+				1.<base href="> in index.html file
+				2.imports (routerModule and routes )are imported
+				3.configuration
+				
+				Path
+				2 variety of syntax for defining path:
+					1.static path: path witha pathname
+						path:component,
+						static+dynamic path:							
+							path:component/:id-->hero/1,hero/2
+					2.empty path :if no path match found,redirect to a particular component as heroes here
+							path:''
+							redirectTo:'heroes'
+							pathMatch:'full'   'dashboard/heroes'
+												'heroapp/heroes'
+												'/heroes'
+					3.wildcard: '**' This route will be selected if none of the above path matches
+						The order of routes matters.Recommended Design:Static route-->Empty-->Wildcard
+						the router uses a first-match wins strategy when matching routes.
+					
+					Data property:data propertyis accessible within each activated route.Used to store items such as page titles,bredcrumb text
+
+				4.RouterOutlet:is a plaeholder that nagular fills dynamically based on the current routes
+					<router-outlet></router-outlet>
+					<router-outlet name="left"></router-outlet>
+					<router-outlet name="right"></router-outlet>
+				5.RouterLinks :lets you link to specific parts of your app
+					[{path:'user/:name',component:UserCmp}]
+
+					when linking to this route 
+					<a routerLink='user/bob'>link to user component</a>
+
+					touterlink can take queryParams(after ?):
+					<a [routerLink]="['/user/bob']" [queryParams]="{debug:true}" fragment="education">
+					
+					RouterLink will use this to generate :
+						link: /user/bob#education?debug=true
+						<a routerLink="/crisis-center" routerLinkActive="true">Crisis center</a>
+						<router-outlet></router-outlet>
+						routerLinkActive :this will tell which route is active
+						QueryParams:-> http://www.example.com/login.jsp?sessionId=9999
+
+					ActivatedRoute:a service that is provided to each route component that contains route specific information 
+					such as route parameters,static data,resolve data,global query params,and the global fragment					
+				6.Router State:
+
+				Lazy Loading : 
+				Eager Loading :
+
+				For Programmatic navigation->Router object is to be used(that is based on conditions)
+					this.router.navigate('../',component)
+
+			Reactive Programming:create streams in this,programming paradign that works with data streams
+					normally-->create event-->listen-->over
+					in reactive programming--->live event
+						event wont be completed unless forcefully terminated(unsubscribed)
+					Design patterns in reactive programings:
+					->Observer Design pattern
+					->Iterator deisgn pattern
+					->event programing 
+					->functional
+
+					observer design pattern-->SW design pattern in which object is called as subject,
+						maintain a list of dependents-->called observers
+						mainly used to implement distributed event handling in "event driven" software
+
+						React to events-->Event-driven
+						React to load-->scalable
+						React to failure-->resilient
+						React to users-->responsive
+						Data streams can be:
+							UI Events,HTTp Events,File Systems,Array-like objects,Memory-cache
+						Stream:flow of things,A sequence of ongoing events ordered in time
+							from streams we can get 3 things:
+								1.value
+								2.error
+								3.success
+							ex:->for timing your search,timing API->
+							Observables:create observable and then return:
+								ways to create observable:
+									2 steps to implement reactive programming
+										You have a source.ex-:Array,Object,UI,HTTP,FIle System->then attach a listener to 
+										Operators
+									var foo=Rx.Observable.of(42,100,200);
+									stream.subscribe(value=>console.log(value),
+										err=>console.log(value),
+										completed=>console.log('done'));
+									array=>iterate=>filter=>find
+									Immutable implementation
+									to call subscribe next method is used
+
+									
+
+
+						
+
+
+
+
+				
 
 
 
 
 
+				
 
-
-							
-
-
-
+					
